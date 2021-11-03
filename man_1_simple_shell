@@ -1,44 +1,90 @@
-.TH man 1 "28 Nov 2019" "0.32" "our own simple_shell man page"
+.TH simple_shell 1 "14 Aug 2020" "1.00" "simple_shell General Comands Manual"
 .SH NAME
-.B our own simple_shell
-- We try to build our own simple shell.
+.B simple_shell
+- UNIX command line interpreter.
+
 .SH SYNOPSIS
-It is the creation of a simple unix command interpreter that provides a user interface to access operating system services.
-.SH
-.SH
+.B ./hsh
+- [option_name] [command_file]
+
 .SH DESCRIPTION
-we use the following files to build our own simple shell:
-.PP
--1.0.getppid.c (Write a program that prints the PID of the parent process.
-.PP -1.1._proc_sys_kernel_pid_max - Write a shell script that prints the maximum value a process ID can be.
-.PP-2.0.av.c - (Write a program that prints all the arguments, without using ac.)
-.PP-2.1.Read_Line.c - (getline) Write a program that prints "$ ", wait for the user to enter a command, prints it on the next line.
-.PP-2.2.command_line_to_av.c - (strtok) Write a function that splits a string and returns an array of each word of the string.
-.PP-3.execve.c - Executing a program. The system call execve allows a process to execute another program (man 2 execve).
-.PP-4.fork.c - The system call fork (man 2 fork) creates a new child process, almost identical to the parent (the process that calls fork).
-.PP-4.1.fork.c - Using the return value of fork, it is possible to know if the current process is the father or the child: fork will return 0 to the child, and the PID of the child to the father.
-.PP-5.wait.c - The wait system call (man 2 wait) suspends execution of the calling process until one of its children terminates.
-.PP-6.fork+wait+execve.c - Exercise: fork + wait + execve Write a program that executes the command ls -l /tmp in 5 different child processes.
-.PP-generate-authors.sh and AUTHORS. . File man_1_simple_shell - Manual for our simple shell
 
+.B Simple shell
+it is a simple version of a command line interpreter for the system. The simple shell read lines from either the terminal, interpretes them, and generally executes other commands. It incorporates mode interactive and non-interactive, the commands can be executed while the program is running or can be executing a command within a file directly by the shell.
 
-.SH RETURN VALUE
-.SHOur Shell must return the execution in standard output of the command typed by the user
-If the command doesn't exist, say "Doesn't exist".
-.SH EXAMPLES TEST
-we compare with printf function original our own _printf function with next examples:
-.SH
-.SH Examples
-.SH
-.SH
-.SH
-.SH
-.SH Results
-.SH
-.SH
-.SH
-.SH
-.SH ISSUES
-We have a issue in check #
+.SS INVOCATION
+
+To start the interactive mode the program will be executed, then starts the mode indicated by '$', to exit of the mode type 'exit' or type 'ctrl + d' and in the mode non-interactive the location that contains the command to be executed must be specified in the command line.
+
+.SS EXECUTION
+
+The program takes the arguments of the command line in a string and it is tokenizes into words using "space" as a delimiter, the first word is consider the command and all remaining are considered the arguments to that command. If the command is valid:
+
+1. If the first argument is different to '.', '/' or shell builtin, the program searches in the PATH and then invocates it.
+2. If the first character is '.' or '/', the program executes that typed command with the passed argument.
+
+.SH SEE ALSO
+
+psh(1), environ(7), ksh(1), test(1)
+
+.SS Command Exit status 
+
+The Exit command status could vary depending of the typed command and his behavior, in the caso of a builtin command return exit codes, as does an executed shell function.
+
+.SS EXIT STATUS
+
+Errors that are detected by the shell, such a syntax error, will cause an exit specifying that file or directory does not exist. If a type a command with a syntax error, the output specifies 'No such file or directory'. 
+
+.SH BUGS
+
+No known bugs.
+
+.SH EXAMPLES
+.sp
+.B Execution of command: $ ls -l
+.sp
+$ ls -l
+.nf
+total 64
+drwxrwxr-x 3 juan juan  4096 Aug 19 22:54 .
+drwxrwxr-x 3 juan juan  4096 Aug 19 22:34 ..
+drwxrwxr-x 8 juan juan  4096 Aug 19 22:34 .git
+-rw-rw-r-- 1 juan juan   165 Aug 19 22:34 AUTHORS
+-rw-rw-r-- 1 juan juan  2390 Aug 19 22:34 README.md
+-rw-rw-r-- 1 juan juan  1485 Aug 19 22:34 functions.h
+-rwxrwxr-x 1 juan juan 14000 Aug 19 22:54 hsh
+-rw-rw-r-- 1 juan juan   513 Aug 19 22:34 hsh.c
+-rwxrwxr-x 1 juan juan  2004 Aug 19 22:34 man_1_simple_shell
+-rw-rw-r-- 1 juan juan  1935 Aug 19 22:34 ops_linked_list.c
+-rw-rw-r-- 1 juan juan  1634 Aug 19 22:34 ops_strings.c
+-rw-rw-r-- 1 juan juan  3133 Aug 19 22:34 tools.c
+
+.B Execution of "env" variable:
+$ env
+.nf
+XDG_VTNR=7
+LC_PAPER=es_CO.UTF-8
+LC_ADDRESS=es_CO.UTF-8
+XDG_SESSION_ID=c2
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/juan
+LC_MONETARY=es_CO.UTF-8
+CLUTTER_IM_MODULE=xim
+GPG_AGENT_INFO=/home/juan/.gnupg/S.gpg-agent:0:1
+TERM=xterm-256color
+VTE_VERSION=4205
+SHELL=/bin/bash
+QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+WINDOWID=100752850
+LC_NUMERIC=es_CO.UTF-8
+UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1425
+GNOME_KEYRING_CONTROL=
+GTK_MODULES=gail:atk-bridge:unity-gtk-module
+USER=juan
+...
+.sp
+.B Prints all the environment variables of the system. 
 .SH AUTHORS
-Ricardo Barreto, Diego Rojas and Juan David Restrepo Z
+
+.B Written by Andrés Ariza and Juan Uribe
+
+.B Holberton School - Cohort 12.s
