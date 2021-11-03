@@ -1,67 +1,33 @@
-# Project:0x16.C-Simple Shell
+General
+Who designed and implemented the original Unix operating system
+Who wrote the first version of the UNIX shell
+Who invented the B programming language (the direct predecessor to the C programming language)
+Who is Ken Thompson
+How does a shell work
+What is a pid and a ppid
+How to manipulate the environment of the current process
+What is the difference between a function and a system call
+How to create processes
+What are the three prototypes of main
+How does the shell use the PATH to find the programs
+How to execute another program with the execve system call
+How to suspend the execution of a process until one of its children terminates
+What is EOF / ìend-of-fileî?
+Requirements
+General
+Allowed editors: vi, vim, emacs
+All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+All your files should end with a new line
+A README.md file, at the root of the folder of the project is mandatory
+Your code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
+Your shell should not have any memory leaks
+No more than 5 functions per file
+All your header files should be include guarded
+Use system calls only when you need to (why?)
+GitHub
+*There should be one project repository per group. If you and your partner have a repository with the same name in both your accounts, you risk a 0% score. Add your partner as a collaborator. *
 
-## Introduction:
-
-In this project is developed a simple **UNIX** command interpreter (shell) as a part of low-level programming foundation and algorithm--Linux and Unix system programming.
-
-## Description:
-
-A simple **UNIX** command interpreter is a program that reads commands from the standard input or files and executes them in order to display a result.
-
-## Requirements:
-
-### General:
-
-+ Allowed editors: **vi**, **vim**, **emacs**
-+ All your files will be compiled on Ubuntu 14.04 LTS
-+ Your C programs and functions will be compiled with **gcc 4.8.4 using the flags -Wall -Werror -Wextra** and **-pedantic**
-+ All your files should end with a new line
-+ A README.md file, at the root of the folder of the project is mandatory
-+ Your code should use the **Betty** style. It will be checked using [betty-style.pl](https://github.com/holbertonschool/Betty/blob/master/betty-style.pl) and [betty-doc.pl](https://github.com/holbertonschool/Betty/blob/master/betty-doc.pl)
-+ Your shell should not have any memory leaks
-+ No more than 5 functions per file
-+ All your header files should be include guarded
-+ Use system calls only when you need to ([why?](https://www.quora.com/Why-are-system-calls-expensive-in-operating-systems))
-
-## Flowchart:
-
-This is the [Flowchart](https://github.com/poix-code/simple_shell/blob/master/Shell.c.png) that describes the process of the simple shell.
-
-## Installation:
-
-To use this shell first	of all you must	clone this repository, using the next c ommand:
-
-`git clone https://github.com/poix-code/simple_shell.git`
-
-## How to compile it:
-
-After downloaded you must enter the directory and execute the next command:
-
-`gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
-
-## How to use it:
-
-To initializate the Shell process you need to run:
-`./hsh`
-
-And now you can type and execute commands writing its relative path, see below:
-
-```
-$ ./hsh
-($) /bin/ls
-AUTHORS  functions.h  hsh  hsh.c  man_1_simple_shell  ops_linked_list.c  ops_strings.c  README.md  tools.c
-($)
-($) exit
-$
-```
-
-Or writing the reserved word of the command, like this:
-```
-($) ls
-AUTHORS  functions.h  hsh  hsh.c  man_1_simple_shell  ops_linked_list.c  ops_strings.c  README.md  tools.c
-($)
-```
-
-![Holberton logo](https://camo.githubusercontent.com/80e4aef5357b80f03b960818a751e2be258ccc97/68747470733a2f2f7777772e686f6c626572746f6e7363686f6f6c2e636f6d2f686f6c626572746f6e2d6c6f676f2e706e67)
-
-**Designed by [Andr√©s Ariza](https://github.com/aarizat) and [Juan Uribe](https://github.com/poix-code), cohort 12.**
+More Info
+Output
+Unless specified otherwise, your program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
+The only difference is when you print an error, the name of the program must be equivalent to your argv[0] (See below)
